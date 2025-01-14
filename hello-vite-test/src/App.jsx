@@ -74,8 +74,23 @@ function App() {
   // return name || '값이undefined입니다.';
 
   //순서 10, 인라인 스타일링 확인. 
+  //방법1
   // return <div style={style}>{name}</div>
 
+  // 방법2
+  // return <div style={{
+  //   // background-color는 backgroundColor와 
+  //   // 같이 -가 사라지고 카멜 표기법으로 작성됩니다.
+  //   backgroundColor: 'black',
+  //   color: 'aqua',
+  //   // font-size -> fontSize
+  //   fontSize: '48px',
+  //   fontMeight: 'bold', // font-weight -> fontNeight 
+  //   padding: 16 // 단위를 생략하면 pX로 지정됩니다.
+  // }}>
+  //   {name}</div>
+
+  //순서11 
   return (
     <>
       <div className='react'>{name}</div>
@@ -85,4 +100,5 @@ function App() {
 }
 
 export default App
+
 
