@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Info from './component/Info';
-import CounterUsereducer from './component/CounterUsereducer';
-import InfoUserReducer from './component/InfoUserReducer';
+import Average from './Component/Average'; // 파일 경로 확인
 
 const App = () => {
   const [visible, setVisible] = useState(false);
@@ -18,11 +16,9 @@ const App = () => {
           {visible ? '숨기기' : '보이기'}
         </button>
         <hr />
-        {visible && <Info />}
       </div>
-      <h2>useReducer 버전 Counter</h2>
-      <CounterUsereducer />
-      <InfoUserReducer />
+      {visible && <h2>useReducer 버전 Counter</h2>}
+      <Average />
     </>
   );
 };
