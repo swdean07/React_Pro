@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <div>
-        <h1 className='react'>ch8 hooks 함수형 컴포넌트 추가 기능 확인</h1>
+        <h1 className='react'>ch8 Hooks</h1>
         <button
           onClick={() => {
             setVisible(!visible);
