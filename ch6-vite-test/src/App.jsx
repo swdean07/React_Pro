@@ -1,6 +1,6 @@
 import './App.css';
 import Iteration from './component/Iteration';
-// import IterationEx from './component/IterationEx';
+import IterationEx from './component/IterationEx';
 // import IterationEx2 from './component/IterationEx2';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <h1 className='react'>ch6 컴포넌트 반복</h1>
       <Iteration />
-      {/* <IterationEx /> */}
+      <IterationEx />
       {/* <IterationEx2 /> */}
     </>
   );
