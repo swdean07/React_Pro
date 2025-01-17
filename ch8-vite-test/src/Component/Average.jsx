@@ -27,9 +27,9 @@ const Average = () => {
         const parsedNumber = parseInt(number, 10);
 
         // 응용 실습 예제 3: 입력값에 최대/최소 제한 추가
-        // 1 이상, 1000 이하만 허용
-        if (parsedNumber < 1 || parsedNumber > 1000) {
-            alert("숫자는 1 이상, 1000 이하만 입력 가능합니다."); // 조건 위반 시 경고 메시지
+        // 1 이상, 100 이하만 허용
+        if (parsedNumber < 1 || parsedNumber > 100) {
+            alert("숫자는 1 이상, 100 이하만 입력 가능합니다."); // 조건 위반 시 경고 메시지
             return;
         }
 
