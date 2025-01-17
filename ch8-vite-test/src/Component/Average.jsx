@@ -62,7 +62,7 @@ const Average = () => {
                     <li
                         key={index}
                         style={{
-                            color: index === list.length - 1 ? "red" : "black", // 최근 값은 빨간색으로 표시
+                            color: index === list.length - 1 ? "purple" : "black", // 최근 값은 보라색으로 표시
                         }}
                     >
                         {value}
