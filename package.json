@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "classnames": "^2.5.1",
+    "include-media": "^2.0.0",
+    "open-color": "^1.9.1",
+    "sass": "^1.83.4",
+    "styled-components": "^6.1.14"
+  }
+}
