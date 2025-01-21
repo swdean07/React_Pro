@@ -1,6 +1,6 @@
 import './App.css';
-import Iteration from './component/Iteration';
-import IterationEx from './component/IterationEx';
+import Iteration from './components/Iteration';
+import IterationEx from './components/IterationEx';
 // import IterationEx2 from './component/IterationEx2';
 
 function App() {

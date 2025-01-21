@@ -1,8 +1,8 @@
 import './App.css'
-import Counter from './component/Counter'
-import Mycomponent from './component/Mycomponent'
-import Mycomponent2 from './component/Mycomponent2'
-import Say from './component/Say'
+import Counter from './components/Counter'
+import Mycomponent from './components/Mycomponent'
+import Mycomponent2 from './components/Mycomponent2'
+import Say from './components/Say'
 
 function App() {
   const name = "리액트"

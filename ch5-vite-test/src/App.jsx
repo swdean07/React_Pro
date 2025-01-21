@@ -1,7 +1,7 @@
 // 교체 작업 3
 import React, { Component } from 'react';
 import './App.css'
-import ScrollBox from './component/ScrollBox';
+import ScrollBox from './components/ScrollBox';
 
 class App extends Component {
 

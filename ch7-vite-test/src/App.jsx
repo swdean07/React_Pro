@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LifeCycleSample from './Component/LifeCycleSample';
+import LifeCycleSample from './Components/LifeCycleSample';
 
 // 랜덤 색상을 생성하는 함수
 function getRandomColor() {

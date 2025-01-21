@@ -1,8 +1,8 @@
 import './App.css';
-import EventPractice from './Component/EventPractice';
-import Login from './Component/Login';
-import Signup from './Component/Signup';
-import LoginWithMain from './Component/LoginWithMain';
+import EventPractice from './Components/EventPractice';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import LoginWithMain from './Components/LoginWithMain';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Average from './Component/Average'; // 파일 경로 확인
+import Average from './Components/Average'; // 파일 경로 확인
 
 const App = () => {
   const [visible, setVisible] = useState(false);
