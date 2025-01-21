@@ -1,5 +1,20 @@
 .TodoList {
     min-height: 320px; // 최소 높이 설정
-    max-height: 513px; // 최대 높이 설정
+    max-height: 513px; // 최대 높이 설정, 가상화 설정시 준비물 사용될 예정 확인.
     overflow-y: auto; // 세로 스크롤 가능하도록 설정
+}
+
+.TodoList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* 항목 간의 간격 */
+}
+
+.TodoList-item-wrapper {
+    display: flex;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

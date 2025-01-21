@@ -5,3 +5,30 @@
   font-weight: bold;
   padding: 16px;
 }
+
+/* App 전체 스타일 */
+.react {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.centered-button {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.todo-list-section {
+  margin-bottom: 20px;
+}
+
+.todo-list-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* 체크된 항목과 미체크된 항목 간의 간격 조정 */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
