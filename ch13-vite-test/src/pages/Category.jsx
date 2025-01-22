@@ -1,21 +1,19 @@
-import { useParams, useSearchParams, Routes, Route } from 'react-router-dom';
-import CategoryDetails from './CategoryDetails'; // CategoryDetails 컴포넌트 임포트
+import { useParams, useSearchParams } from 'react-router-dom';
 
 function Category() {
-    const { name } = useParams();  // URL 파라미터에서 name을 가져옴
-    const [searchParams] = useSearchParams();  // 쿼리 스트링을 가져옴
-    const lang = searchParams.get('lang');  // 'lang' 쿼리 파라미터 값 가져오기
+  // URL 파라미터 가져오기
+  const { name } = useParams();
 
-    return (
-        <div>
-            <h2>Category: {name}</h2>
-            {lang && <p>Language: {lang}</p>}
-            {/* 하위 라우트 설정 */}
-            <Routes>
-                <Route path="details" element={<CategoryDetails />} />
-            </Routes>
-        </div>
-    );
+  // 쿼리스트링 가져오기
+  const [searchParams] = useSearchParams();
+  const lang = searchParams.get('lang');
+
+  return (
+    <div>
+      <h2>Category: {name}</h2>
+      <p>Language: {lang || 'default'}</p>
+    </div>
+  );
 }
 
 export default Category;

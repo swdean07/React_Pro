@@ -5,3 +5,16 @@
   font-weight: bold;
   padding: 16px;
 }
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+h1.react {
+  color: #61dafb;
+  text-align: center;
+  margin-top: 20px;
+}
