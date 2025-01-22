@@ -2,7 +2,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import About from './pages/About';
 import Home from './pages/Home';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile'; // Profile 컴포넌트 임포트
 import Articles from './pages/Articles';
 import Article from './pages/Article';
 import Layout from './Layout';
@@ -25,12 +25,13 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/category/:name" element={<Category />}>
-            {/* CategoryDetails는 Category 컴포넌트 내에서 하위 라우트로 처리됨 */}
             <Route path="details" element={<CategoryDetails />} />
           </Route>
           <Route path="/articles" element={<Articles />}>
             <Route path=":id" element={<Article />} />
           </Route>
+          <Route path="/profile/:username" element={<Profile />} />{' '}
+          {/* Profile 라우트 추가 */}
           <Route
             path="/mypage"
             element={
