@@ -148,7 +148,7 @@ function App() {
         <div>
           <input
             type="text"
-            placeholder="할 일을 검색하세요"
+            placeholder="검색된 목록"
             value={searchText}
             onChange={onChangeSearch}
           />
