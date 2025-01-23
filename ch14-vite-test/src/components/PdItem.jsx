@@ -7,7 +7,7 @@ const NewsItemBlock = styled.div`
     img {
       display: block;
       width: 160px;
-      height: 100px;
+      height: 170px;
       object-fit: cover;
     }
   }
@@ -30,11 +30,10 @@ const NewsItemBlock = styled.div`
     margin-top: 3rem;
   }
 `;
-
 const formatDate = (isoString) => {
   const date = new Date(isoString);
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
   const day = String(date.getDate()).padStart(2, '0');
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
@@ -42,31 +41,21 @@ const formatDate = (isoString) => {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };
 
-const NewsItem = ({ article, weatherInfo }) => {
-  const { title, description, url, urlToImage, author, publishedAt } = article;
-  const weather = weatherInfo ? weatherInfo.weather : '날씨 정보 없음'; // 날씨 정보 추가
+
+// 부모 App -> NewsList -> NewsItem
+const PdItem = ({ article }) => {
+  const { baseDate, baseTime, weatherNm } = article;
 
   return (
     <NewsItemBlock>
-      {urlToImage && (
-        <div className="thumbnail">
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="thumbnail" />
-          </a>
-        </div>
-      )}
       <div className="contents">
-        <h2>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            {title}
-          </a>
-        </h2>
-        <p>{description}</p>
-        <p>저자: {author}</p>
-        <p>발행일 : {formatDate(publishedAt)}</p>
+        <p>날짜 : {baseDate}</p>
+        <p>시간 : {baseTime}</p>
+        <p>날씨 : {weatherNm}</p>
+
       </div>
     </NewsItemBlock>
   );
 };
 
-export default NewsItem;
+export default PdItem;
