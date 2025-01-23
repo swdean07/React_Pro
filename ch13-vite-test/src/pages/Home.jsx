@@ -27,6 +27,15 @@ const Home = () => {
                 <li>
                     <Link to="/login">로그인</Link>
                 </li>
+                <li>
+                    <Link to="/category/swh">swh 카테고리</Link>
+                </li>
+                <li>
+                    <Link to="/category/swh?username=홍상우">swh 쿼리스트링</Link>
+                </li>
+                <li>
+                    <Link to="/category/swh/details?username=홍상우">swh 중첩라우팅</Link>
+                </li>
             </ul>
         </div>
     );

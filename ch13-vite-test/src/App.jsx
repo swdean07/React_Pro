@@ -13,6 +13,7 @@ import Category from './pages/Category';
 import ProtectedRoute from './pages/ProtectedRoute';
 import LanguageSelector from './pages/LanguageSelector';
 import CategoryDetails from './pages/CategoryDetails'; // 이미 임포트됨
+import DefaultPage from './pages/DefaultPage';
 
 function App() {
   const isAuthenticated = false;
@@ -25,13 +26,12 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/category/:name" element={<Category />}>
+            {/* CategoryDetails는 Category 컴포넌트 내에서 하위 라우트로 처리됨 */}
             <Route path="details" element={<CategoryDetails />} />
           </Route>
           <Route path="/articles" element={<Articles />}>
             <Route path=":id" element={<Article />} />
           </Route>
-          <Route path="/profile/:username" element={<Profile />} />{' '}
-          {/* Profile 라우트 추가 */}
           <Route
             path="/mypage"
             element={
