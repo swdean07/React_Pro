@@ -13,6 +13,7 @@ import Category from './pages/Category';
 import ProtectedRoute from './pages/ProtectedRoute';
 import LanguageSelector from './pages/LanguageSelector';
 import CategoryDetails from './pages/CategoryDetails'; // 이미 임포트됨
+import DefaultPage from './pages/DefaultPage';
 
 function App() {
   const isAuthenticated = false;
@@ -24,24 +25,26 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/category/:name" element={<Category />}>
-            {/* CategoryDetails는 Category 컴포넌트 내에서 하위 라우트로 처리됨 */}
-            <Route path="details" element={<CategoryDetails />} />
-          </Route>
-          <Route path="/articles" element={<Articles />}>
-            <Route path=":id" element={<Article />} />
-          </Route>
-          <Route
-            path="/mypage"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <MyPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/language" element={<LanguageSelector />} />
-          <Route path="*" element={<NotFound />} />
+
+        </Route>
+        <Route path="/articles" element={<Articles />}>
+          <Route path=":id" element={<Article />} />
+        </Route>
+        <Route
+          path="/mypage"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <MyPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/language" element={<LanguageSelector />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/category/:name" element={<Category />}>
+          {/* CategoryDetails는 Category 컴포넌트 내에서 하위 라우트로 처리됨 */}
+          <Route index element={<DefaultPage />} />
+          <Route path="details" element={<CategoryDetails />} />
         </Route>
       </Routes>
     </>
