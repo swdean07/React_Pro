@@ -5,7 +5,8 @@ import axios from 'axios';
 import usePromise from '../lib/usePromise';
 import PdItem from './PdItem';
 import PdItemBusan from './PdItemBusan';
-import getBusanCultureClassicDetail from './getBusanCultureClassicDetail';
+import BusanCultureDetail from './BusanCultureDetail';
+import GetBusanRestaurants from './GetBusanRestaurants';
 
 const NewsListBlock = styled.div`
   box-sizing: border-box;
@@ -13,7 +14,6 @@ const NewsListBlock = styled.div`
   width: 768px;
   margin: 0 auto;
   margin-top: 2rem;
-
   @media screen and (max-width: 768px) {
     width: 100%;
     padding-left: 1rem;
@@ -26,19 +26,23 @@ const NewsList = ({ category }) => {
         const query = category === 'all' ? '' : `&category=${category}`;
         if (category === 'cctvWeather') {
             return axios.get(
-                `http://apis.data.go.kr/1360000/RoadWthrInfoService/getCctvStnRoadWthr?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&eqmtId=0500C00001&hhCode=00&datatype=json`
+                `http://apis.data.go.kr/1360000/RoadWthrInfoService/getCctvStnRoadWthr?serviceKey=ALRX9GpugtvHxcIO%2FiPg1vXIQKi0E6Kk1ns4imt8BLTgdvSlH%2FAKv%2BA1GcGUQgzuzqM3Uv1ZGgpG5erOTDcYRQ%3D%3D&numOfRows=10&pageNo=1&eqmtId=0500C00001&hhCode=00&dataType=json`
             );
         } else if (category === 'busanAtt') {
             return axios.get(
-                `http://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&resulttype=json`
+                `http://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=ALRX9GpugtvHxcIO%2FiPg1vXIQKi0E6Kk1ns4imt8BLTgdvSlH%2FAKv%2BA1GcGUQgzuzqM3Uv1ZGgpG5erOTDcYRQ%3D%3D&numOfRows=10&pageNo=1&resultType=json`
             );
-        } else if (category === 'getBusanCultureClassicDetail') {
+        } else if (category === 'classic') {
             return axios.get(
-                `http://apis.data.go.kr/6260000/BusanCultureClassicDetailService/getBusanCultureClassicDetail?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&res_no=2020020008&resulttype=json`
+                `http://apis.data.go.kr/6260000/BusanCultureClassicDetailService/getBusanCultureClassicDetail?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&res_no=2020020008`
+            );
+        } else if (category === 'foods') {
+            return axios.get(
+                `http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1`
             );
         } else {
             return axios.get(
-                `https://newsapi.org/v2/top-headlines?country=us${query}&apiKey=01c45f03d5ec482897eecb8b8b3afbf5`
+                `https://newsapi.org/v2/top-headlines?country=us${query}&apiKey=0a8c4202385d4ec1bb93b7e277b3c51f`
             );
         }
     };
@@ -49,19 +53,23 @@ const NewsList = ({ category }) => {
         return <NewsListBlock>대기 중...</NewsListBlock>;
     }
 
-    if (!resolved) {
-        return null;
-    }
-
     if (error) {
         return <NewsListBlock>에러 발생!</NewsListBlock>;
     }
 
-    const data = category === 'cctvWeather'
-        ? resolved?.data?.response?.body?.items?.item || []
-        : category === 'busanAtt'
-            ? resolved?.data?.getAttractionKr?.item || []
-            : resolved?.data?.articles || [];
+    if (!resolved) {
+        return null;
+    }
+
+    const data = category === "cctvWeather"
+        ? resolved.data?.response?.body?.items?.item || []
+        : category === "busanAtt"
+            ? resolved.data?.getAttractionKr?.item || []
+            : category === "getBusanCultureClassicDetail"
+                ? resolved.data?.response?.body?.items?.item || []
+                : category === "getBusanRestaurants"
+                    ? resolved.data?.response?.body?.items?.item || []
+                    : resolved.data?.articles || [];
 
     return (
         <NewsListBlock>
@@ -69,6 +77,10 @@ const NewsList = ({ category }) => {
                 data.map((data, index) => <PdItem key={index} article={data} />)
             ) : category === 'busanAtt' ? (
                 data.map((data, index) => <PdItemBusan key={index} article={data} />)
+            ) : category === 'getBusanCultureClassicDetail' ? (
+                data.map((data, index) => <BusanCultureDetail key={index} article={data} />)
+            ) : category === 'getBusanRestaurants' ? (
+                data.map((data, index) => <GetBusanRestaurants key={index} article={data} />)
             ) : (
                 data.map((data) => <NewsItem key={data.url} article={data} />)
             )}

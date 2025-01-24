@@ -7,8 +7,9 @@ const NewsItemBlock = styled.div`
     img {
       display: block;
       width: 160px;
-      height: 100px;
+      height: 170px;
       object-fit: cover;
+      border-radius: 8px;
     }
   }
   .contents {
@@ -33,36 +34,38 @@ const NewsItemBlock = styled.div`
 
 const formatDate = (isoString) => {
   const date = new Date(isoString);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  return date.toLocaleString('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
 };
 
-const NewsItem = ({ article, weatherInfo }) => {
+const NewsItem = ({ article }) => {
   const { title, description, url, urlToImage, author, publishedAt } = article;
-  const weather = weatherInfo ? weatherInfo.weather : '날씨 정보 없음'; // 날씨 정보 추가
 
   return (
     <NewsItemBlock>
-      {urlToImage && (
-        <div className="thumbnail">
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="thumbnail" />
-          </a>
-        </div>
-      )}
+      <div className="thumbnail">
+        <a href={url} target="_blank" rel="noopener noreferrer" title={title}>
+          <img
+            src={urlToImage || 'default-thumbnail.jpg'}
+            alt={urlToImage ? '뉴스 썸네일' : '기본 썸네일'}
+            onError={(e) => e.target.src = 'default-thumbnail.jpg'}
+          />
+        </a>
+      </div>
       <div className="contents">
         <h2>
-          <a href={url} target="_blank" rel="noopener noreferrer">
+          <a href={url} target="_blank" rel="noopener noreferrer" title={title}>
             {title}
           </a>
         </h2>
-        <p>{description}</p>
-        <p>저자: {author}</p>
+        {description && <p>{description}</p>} {/* description이 있을 경우에만 렌더링 */}
+        {author && <p>저자 : {author}</p>}
         <p>발행일 : {formatDate(publishedAt)}</p>
       </div>
     </NewsItemBlock>
