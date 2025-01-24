@@ -1,8 +1,11 @@
 import { ColorConsumer } from '../contexts/color';
+import React, { useContext } from 'react';
+import ColorContext from '../contexts/color';
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
 const SelectColors = () => {
+    const { actions } = useContext(ColorContext);
     return (
         <div>
             <h2>색상을 선택하세요.</h2>
