@@ -34,11 +34,11 @@ const NewsList = ({ category }) => {
             );
         } else if (category === 'classic') {
             return axios.get(
-                `http://apis.data.go.kr/6260000/BusanCultureClassicDetailService/getBusanCultureClassicDetail?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&res_no=2020020008`
+                `http://apis.data.go.kr/6260000/BusanCultureClassicDetailService/getBusanCultureClassicDetail?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&res_no=2020020008&resulttype=json`
             );
         } else if (category === 'foods') {
             return axios.get(
-                `http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1`
+                `http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&resultType=json`
             );
         } else {
             return axios.get(
@@ -65,10 +65,10 @@ const NewsList = ({ category }) => {
         ? resolved.data?.response?.body?.items?.item || []
         : category === "busanAtt"
             ? resolved.data?.getAttractionKr?.item || []
-            : category === "getBusanCultureClassicDetail"
+            : category === "classic"
                 ? resolved.data?.response?.body?.items?.item || []
-                : category === "getBusanRestaurants"
-                    ? resolved.data?.response?.body?.items?.item || []
+                : category === "foods"
+                    ? resolved.data?.getFoodKr.item || []
                     : resolved.data?.articles || [];
 
     return (
@@ -77,9 +77,9 @@ const NewsList = ({ category }) => {
                 data.map((data, index) => <PdItem key={index} article={data} />)
             ) : category === 'busanAtt' ? (
                 data.map((data, index) => <PdItemBusan key={index} article={data} />)
-            ) : category === 'getBusanCultureClassicDetail' ? (
+            ) : category === 'classic' ? (
                 data.map((data, index) => <BusanCultureDetail key={index} article={data} />)
-            ) : category === 'getBusanRestaurants' ? (
+            ) : category === 'foods' ? (
                 data.map((data, index) => <GetBusanRestaurants key={index} article={data} />)
             ) : (
                 data.map((data) => <NewsItem key={data.url} article={data} />)

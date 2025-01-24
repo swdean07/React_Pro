@@ -1,91 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
 
 // 스타일 컴포넌트 정의
-const DetailBlock = styled.div`
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin: 1rem auto;
-  width: 768px;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  h2 {
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-  }
-
-  p {
-    margin: 0.5rem 0;
-    line-height: 1.5;
-  }
-
-  a {
-    color: #0077ff;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
+const NewsItemBlock = styled.div`
+  display: flex;
+  .thumbnail {
+    margin-right: 1rem;
+    img {
+      display: block;
+      width: 160px;
+      height: 170px;
+      object-fit: cover;
     }
+  }
+  .contents {
+    h2 {
+      margin: 0;
+      a {
+        color: black;
+        text-decoration: none;
+      }
+    }
+    p {
+      margin: 0;
+      line-height: 1.5;
+      margin-top: 0.5rem;
+      white-space: normal;
+    }
+  }
+  & + & {
+    margin-top: 3rem;
   }
 `;
 
+// 날짜 포맷 함수
 const formatDate = (isoString) => {
+  if (!isoString) return '날짜 정보 없음'; // 예외 처리 추가
   const date = new Date(isoString);
+  if (isNaN(date)) return '날짜 형식 오류'; // 잘못된 날짜 형식 처리
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 };
 
-const BusanCultureDetail = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// BusanCultureDetail 컴포넌트
+const BusanCultureDetail = ({ article }) => {
+  if (!article) {
+    return <NewsItemBlock>데이터가 없습니다.</NewsItemBlock>;
+  }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await axios.get(
-          'http://apis.data.go.kr/6260000/BusanCultureClassicDetailService/getBusanCultureClassicDetail?serviceKey=C65UiiVCboEZ3iy%2Fic1trktk3C%2BpYs3fl4bMt9vpuPqhT1qW5MI45CPxpepD2uevhJ09kLmL1XaH5UKNpxkb0g%3D%3D&numOfRows=10&pageNo=1&res_no=2020020008'
-        );
-        const item = response.data.response.body.items.item[0];
-        setData(item);
-      } catch (e) {
-        setError('데이터를 불러오는 중 오류가 발생했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <DetailBlock>데이터를 불러오는 중입니다...</DetailBlock>;
-  if (error) return <DetailBlock>{error}</DetailBlock>;
-
-  if (!data) return <DetailBlock>데이터가 없습니다.</DetailBlock>;
+  // article이 존재하는 경우에만 구조 분해 할당
+  const { title, place_nm, op_st_dt, op_ed_dt, avg_star, dabom_url } = article || {};
 
   return (
-    <DetailBlock>
-      <h2>{data.title}</h2>
-      <p><strong>장소:</strong> {data.place_nm}</p>
-      <p><strong>공연 시작일:</strong> {formatDate(data.op_st_dt)}</p>
-      <p><strong>공연 종료일:</strong> {formatDate(data.op_ed_dt)}</p>
-      <p><strong>평점:</strong> {data.avg_star || '평가 없음'}</p>
-      <a href={data.dabom_url} target="_blank" rel="noopener noreferrer">
-        공연 정보 더보기
-      </a>
-    </DetailBlock>
+    <NewsItemBlock>
+      <div className="contents">
+        <h2>{title || '제목 정보 없음'}</h2> {/* 기본값 처리 */}
+        <p><strong>장소:</strong> {place_nm || '정보 없음'}</p>
+        <p><strong>공연 시작일:</strong> {formatDate(op_st_dt)}</p>
+        <p><strong>공연 종료일:</strong> {formatDate(op_ed_dt)}</p>
+        <p><strong>평점:</strong> {avg_star || '평가 없음'}</p>
+        {dabom_url ? (
+          <a href={dabom_url} target="_blank" rel="noopener noreferrer">
+            공연 정보 더보기
+          </a>
+        ) : (
+          <p>공연 정보 링크가 없습니다.</p>
+        )}
+      </div>
+    </NewsItemBlock>
   );
 };
 
 export default BusanCultureDetail;
-
