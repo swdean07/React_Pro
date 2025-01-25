@@ -116,114 +116,116 @@ PdItemBusan.propTypes = {
   }).isRequired,
 };
 
+// 축제 목록 데이터 배열
+const festivalsData = [
+  {
+    UC_SEQ: 71,
+    title: '부산바다축제',
+    location: '부산, 수영구, 다대포 해수욕장',
+    dateRange: { start: '2024-07-26', end: '2024-07-28' },
+    contact: '051-713-5000',
+    homepage: 'http://www.bfo.or.kr/festival_sea/info/01.asp?MENUDIV=1',
+    description:
+      '부산바다축제는 해마다 여름에 열리는 대표 여름축제입니다. 다양한 프로그램과 개막파티를 즐길 수 있습니다. 음악, 춤, 먹거리 등이 마련되어 있어 모든 사람들이 즐길 수 있습니다.',
+    image: {
+      normal:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191213191711585_ttiel',
+      thumb:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191213191711585_thumbL',
+    },
+  },
+  {
+    UC_SEQ: 253,
+    title: '수국축제',
+    location: '부산, 영도구, 태종대, 태종사',
+    dateRange: { start: '2024-07-01', end: '2024-07-01' },
+    contact: '051-405-2727',
+    description:
+      '태종대에서 오색찬란한 수국을 즐길 수 있는 축제입니다. 태종사의 수국들은 주지스님이 40여 년 동안 가꾼 것입니다.',
+    image: {
+      normal:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191222160520749_ttiel',
+      thumb:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191222160520749_thumbL',
+    },
+  },
+  {
+    UC_SEQ: 329,
+    title: '센텀맥주축제',
+    location: '부산, 해운대구, 센텀맥주축제',
+    dateRange: { start: '2024-06-01', end: '2024-06-09' },
+    contact: '051-850-9344',
+    homepage: 'http://www.beerfestival.co.kr',
+    description:
+      '센텀맥주축제는 동서양 남녀노소가 함께 즐길 수 있는 축제입니다. 생맥주 무료 시음과 다양한 이벤트가 마련되어 있습니다.',
+    image: {
+      normal:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227114742493_ttiel',
+      thumb:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227114742493_thumbL',
+    },
+  },
+  {
+    UC_SEQ: 330,
+    title: '금정산성축제',
+    location: '부산, 금정구, 금정산성',
+    dateRange: { start: '2024-05-24', end: '2024-05-26' },
+    contact: '051-715-6884',
+    homepage: 'http://www.gjfac.org/gjfac/main.php',
+    description:
+      '금정산성과 온천천 일대에서 열리는 문화예술 체험축제입니다. 역사와 문화를 경험할 수 있는 다양한 프로그램이 마련되어 있습니다.',
+    image: {
+      normal:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227115551778_ttiel',
+      thumb:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227115551778_thumbL',
+    },
+  },
+  {
+    UC_SEQ: 331,
+    title: '낙동강구포나루축제',
+    location: '부산, 북구, 낙동강구포나루축제',
+    dateRange: { start: '2024-10-11', end: '2024-10-13' },
+    contact: '051-309-4980',
+    homepage:
+      'https://www.bsbukgu.go.kr/tour/index.bsbukgu?menuCd=DOM_000000402001001000',
+    description:
+      '조선시대 낙동강 뱃길의 출발지로 교역문화의 꽃을 피웠던 구포나루터에서 열리는 축제입니다. 다양한 공연과 체험 프로그램이 마련되어 있습니다.',
+    image: {
+      normal:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227120157384_ttiel',
+      thumb:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227120157384_thumbL',
+    },
+  },
+  {
+    UC_SEQ: 395,
+    title: '부산불꽃축제',
+    location: '부산, 수영구, 광안리',
+    dateRange: { start: '2024-11-09', end: '2024-11-09' },
+    contact: '051-713-5000',
+    homepage: 'http://www.bfo.or.kr',
+    description:
+      '부산의 가을을 화려한 불빛으로 장식하는 불꽃축제입니다. 다양한 장소에서 즐길 수 있으며, 사전 준비가 중요합니다.',
+    image: {
+      normal:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20241022165920388_ttiel',
+      thumb:
+        'https://www.visitbusan.net/uploadImgs/files/cntnts/20241022165920388_thumbL',
+    },
+  },
+];
+
 // 축제 목록 컴포넌트
 const FestivalService = () => {
-  const [festivalsData, setFestivalsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 예시 데이터 사용
-        setFestivalsData([
-          {
-            UC_SEQ: 71,
-            title: '부산바다축제',
-            location: '부산, 수영구, 다대포 해수욕장',
-            dateRange: { start: '2024-07-26', end: '2024-07-28' },
-            contact: '051-713-5000',
-            homepage: 'http://www.bfo.or.kr/festival_sea/info/01.asp?MENUDIV=1',
-            description:
-              '부산바다축제는 해마다 여름에 열리는 대표 여름축제입니다. 다양한 프로그램과 개막파티를 즐길 수 있습니다. 음악, 춤, 먹거리 등이 마련되어 있어 모든 사람들이 즐길 수 있습니다.',
-            image: {
-              normal:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191213191711585_ttiel',
-              thumb:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191213191711585_thumbL',
-            },
-          },
-          {
-            UC_SEQ: 253,
-            title: '수국축제',
-            location: '부산, 영도구, 태종대, 태종사',
-            dateRange: { start: '2024-07-01', end: '2024-07-01' },
-            contact: '051-405-2727',
-            description:
-              '태종대에서 오색찬란한 수국을 즐길 수 있는 축제입니다. 태종사의 수국들은 주지스님이 40여 년 동안 가꾼 것입니다.',
-            image: {
-              normal:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191222160520749_ttiel',
-              thumb:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191222160520749_thumbL',
-            },
-          },
-          {
-            UC_SEQ: 329,
-            title: '센텀맥주축제',
-            location: '부산, 해운대구, 센텀맥주축제',
-            dateRange: { start: '2024-06-01', end: '2024-06-09' },
-            contact: '051-850-9344',
-            homepage: 'http://www.beerfestival.co.kr',
-            description:
-              '센텀맥주축제는 동서양 남녀노소가 함께 즐길 수 있는 축제입니다. 생맥주 무료 시음과 다양한 이벤트가 마련되어 있습니다.',
-            image: {
-              normal:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227114742493_ttiel',
-              thumb:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227114742493_thumbL',
-            },
-          },
-          {
-            UC_SEQ: 330,
-            title: '금정산성축제',
-            location: '부산, 금정구, 금정산성',
-            dateRange: { start: '2024-05-24', end: '2024-05-26' },
-            contact: '051-715-6884',
-            homepage: 'http://www.gjfac.org/gjfac/main.php',
-            description:
-              '금정산성과 온천천 일대에서 열리는 문화예술 체험축제입니다. 역사와 문화를 경험할 수 있는 다양한 프로그램이 마련되어 있습니다.',
-            image: {
-              normal:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227115551778_ttiel',
-              thumb:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227115551778_thumbL',
-            },
-          },
-          {
-            UC_SEQ: 331,
-            title: '낙동강구포나루축제',
-            location: '부산, 북구, 낙동강구포나루축제',
-            dateRange: { start: '2024-10-11', end: '2024-10-13' },
-            contact: '051-309-4980',
-            homepage:
-              'https://www.bsbukgu.go.kr/tour/index.bsbukgu?menuCd=DOM_000000402001001000',
-            description:
-              '조선시대 낙동강 뱃길의 출발지로 교역문화의 꽃을 피웠던 구포나루터에서 열리는 축제입니다. 다양한 공연과 체험 프로그램이 마련되어 있습니다.',
-            image: {
-              normal:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227120157384_ttiel',
-              thumb:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20191227120157384_thumbL',
-            },
-          },
-          {
-            UC_SEQ: 395,
-            title: '부산불꽃축제',
-            location: '부산, 수영구, 광안리',
-            dateRange: { start: '2024-11-09', end: '2024-11-09' },
-            contact: '051-713-5000',
-            homepage: 'http://www.bfo.or.kr',
-            description:
-              '부산의 가을을 화려한 불빛으로 장식하는 불꽃축제입니다. 다양한 장소에서 즐길 수 있으며, 사전 준비가 중요합니다.',
-            image: {
-              normal:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20241022165920388_ttiel',
-              thumb:
-                'https://www.visitbusan.net/uploadImgs/files/cntnts/20241022165920388_thumbL',
-            },
-          },
-        ]);
+        // 데이터 가져오는 로직을 여기에 추가할 수 있습니다.
+        // 예시로 데이터를 직접 설정합니다.
         setLoading(false);
       } catch (err) {
         setError('축제 정보를 가져오는 데 실패했습니다.');
