@@ -131,7 +131,7 @@ const FestivalService = () => {
             UC_SEQ: 71,
             title: '부산바다축제',
             location: '부산, 수영구, 다대포 해수욕장',
-            dateRange: { start: '2024-07-26', end: '2024-07-28' }, // 날짜 범위 추가
+            dateRange: { start: '2024-07-26', end: '2024-07-28' },
             contact: '051-713-5000',
             homepage: 'http://www.bfo.or.kr/festival_sea/info/01.asp?MENUDIV=1',
             description:
@@ -147,7 +147,7 @@ const FestivalService = () => {
             UC_SEQ: 253,
             title: '수국축제',
             location: '부산, 영도구, 태종대, 태종사',
-            dateRange: { start: '2024-07-01', end: '2024-07-01' }, // 날짜 범위 추가
+            dateRange: { start: '2024-07-01', end: '2024-07-01' },
             contact: '051-405-2727',
             description:
               '태종대에서 오색찬란한 수국을 즐길 수 있는 축제입니다. 태종사의 수국들은 주지스님이 40여 년 동안 가꾼 것입니다.',
@@ -162,7 +162,7 @@ const FestivalService = () => {
             UC_SEQ: 329,
             title: '센텀맥주축제',
             location: '부산, 해운대구, 센텀맥주축제',
-            dateRange: { start: '2024-06-01', end: '2024-06-09' }, // 날짜 범위 추가
+            dateRange: { start: '2024-06-01', end: '2024-06-09' },
             contact: '051-850-9344',
             homepage: 'http://www.beerfestival.co.kr',
             description:
@@ -178,7 +178,7 @@ const FestivalService = () => {
             UC_SEQ: 330,
             title: '금정산성축제',
             location: '부산, 금정구, 금정산성',
-            dateRange: { start: '2024-05-24', end: '2024-05-26' }, // 날짜 범위 추가
+            dateRange: { start: '2024-05-24', end: '2024-05-26' },
             contact: '051-715-6884',
             homepage: 'http://www.gjfac.org/gjfac/main.php',
             description:
@@ -194,7 +194,7 @@ const FestivalService = () => {
             UC_SEQ: 331,
             title: '낙동강구포나루축제',
             location: '부산, 북구, 낙동강구포나루축제',
-            dateRange: { start: '2024-10-11', end: '2024-10-13' }, // 날짜 범위 추가
+            dateRange: { start: '2024-10-11', end: '2024-10-13' },
             contact: '051-309-4980',
             homepage:
               'https://www.bsbukgu.go.kr/tour/index.bsbukgu?menuCd=DOM_000000402001001000',
@@ -211,7 +211,7 @@ const FestivalService = () => {
             UC_SEQ: 395,
             title: '부산불꽃축제',
             location: '부산, 수영구, 광안리',
-            dateRange: { start: '2024-11-09', end: '2024-11-09' }, // 날짜 범위 추가
+            dateRange: { start: '2024-11-09', end: '2024-11-09' },
             contact: '051-713-5000',
             homepage: 'http://www.bfo.or.kr',
             description:
