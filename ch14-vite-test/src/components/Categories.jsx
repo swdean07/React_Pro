@@ -12,7 +12,7 @@ const categories = [
   { name: 'technology', text: '기술' },
   { name: 'cctvWeather', text: 'cctv 날씨 샘플' },
   { name: 'busanAtt', text: '부산 명소' },
-  { name: 'classic', text: '클래식' },
+  { name: 'festival', text: '축제' },
   { name: 'foods', text: '음식' },
 ];
 
@@ -42,7 +42,7 @@ const CategoriesBlock = styled.div`
   }
 `;
 
-//방법2, NavLink 주입 후, 조건부 렌더링 
+//방법2, NavLink 주입 후, 조건부 렌더링
 const Category = styled(NavLink)`
   font-size: 1.125rem;
   cursor: pointer;
@@ -67,8 +67,8 @@ const Category = styled(NavLink)`
     }
   }
 
-  // 카테고리의 요소들간의 간격, 
-  // 미디어 쿼리 이용해서, 조정. 
+  // 카테고리의 요소들간의 간격,
+  // 미디어 쿼리 이용해서, 조정.
   // 실습3
   & + & {
     margin-left: 1rem;
@@ -78,23 +78,26 @@ const Category = styled(NavLink)`
   }
 `;
 
-// 교체, 기존은 부모로 부터 props 전달 받았고, 
-// 이제 props 받지 않아서, 사용 안함. 
+// 교체, 기존은 부모로 부터 props 전달 받았고,
+// 이제 props 받지 않아서, 사용 안함.
 // const Categories = ({ onSelect, category }) => {
 const Categories = () => {
   return (
     <CategoriesBlock>
       {categories.map((c) => (
-        <Category key={c.name}
+        <Category
+          key={c.name}
           //방법1
           // active={category === c.name}
           // //   추가
           // onClick={() => onSelect(c.name)}
-          // 방법2 
+          // 방법2
           to={c.name === 'all' ? '/' : `/${c.name}`}
-        // 예시 , 
-        // http://localhost:5173/science
-        >{c.text}</Category>
+          // 예시 ,
+          // http://localhost:5173/science
+        >
+          {c.text}
+        </Category>
       ))}
     </CategoriesBlock>
   );
